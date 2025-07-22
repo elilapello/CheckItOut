@@ -1,24 +1,24 @@
-CC = g++
+CC = gcc
 CFLAGS = -Wall -Wextra
 DEBUG_FLAGS = -Wall -Wextra -g
 
-TARGET = main
+TARGET = checkit
 
-SRC = src/main.cpp src/menu.cpp
-OBJS = $(SRC:.cpp=.o)
+SRC = src/main.c src/menu_utils.c
+OBJS = $(SRC:.c=.o)
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET)
 
-%.o: %.cpp
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run:
 	./$(TARGET)
 
 clean:
-	rm -f src/*.o src/$(TARGET)
+	rm -f src/*.o $(TARGET)
 
 .PHONY: run clean
